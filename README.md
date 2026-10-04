@@ -12,5 +12,10 @@ mail : issamaarida@gmail.com
 
 <img src="assets/cat.svg" width="460" alt="ASCII cat spinning on a pen-plotter page">
 
+<br>
+
+## github
+
+<img src="assets/stats.svg" width="720" alt="Isometric skyline of my GitHub contributions, top languages and stats">
 
 </div>
