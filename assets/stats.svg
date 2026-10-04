@@ -8,14 +8,14 @@ text{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:var(--i
 .hl{stroke:var(--ink);stroke-width:.45}.ax{font-size:10px}
 .grid{stroke:var(--faint);stroke-dasharray:2 3}.axis{stroke:var(--ink);stroke-width:.6;opacity:.5}
 .area{fill:url(#fade)}.trend{fill:none;stroke:var(--green);stroke-width:1.6;stroke-linejoin:round}
-.peak{fill:var(--green)}.s0{stop-color:var(--green);stop-opacity:.55}.s1{stop-color:var(--green);stop-opacity:.04}
+.s0{stop-color:var(--green);stop-opacity:.55}.s1{stop-color:var(--green);stop-opacity:.04}
 </style><defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1"><stop class="s0" offset="0"/><stop class="s1" offset="1"/></linearGradient></defs>
 <rect class="l" x="24" y="24" width="672" height="512" stroke-dasharray="2 4"/>
 <path class="l" d="M16 30V16H30"/>
 <path class="l" d="M704 30V16H690"/>
 <path class="l" d="M16 530V544H30"/>
 <path class="l" d="M704 530V544H690"/>
-<text class="m" x="44" y="52">contributions in the last year</text>
+<text class="m" x="44" y="52">contributions in the last 6 months</text>
 <line class="axis" x1="88" y1="300.0" x2="92" y2="300.0"/>
 <text class="dim ax" x="84" y="303.5" text-anchor="end">0</text>
 <line class="grid" x1="92" y1="228.0" x2="668" y2="228.0"/>
@@ -27,61 +27,46 @@ text{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:var(--i
 <line class="grid" x1="92" y1="84.0" x2="668" y2="84.0"/>
 <line class="axis" x1="88" y1="84.0" x2="92" y2="84.0"/>
 <text class="dim ax" x="84" y="87.5" text-anchor="end">150</text>
-<polygon class="area" points="92,300 92.0,300.0 103.1,300.0 114.2,300.0 125.2,300.0 136.3,300.0 147.4,297.1 158.5,298.6 169.5,297.1 180.6,285.6 191.7,300.0 202.8,300.0 213.8,300.0 224.9,287.0 236.0,300.0 247.1,300.0 258.2,300.0 269.2,300.0 280.3,300.0 291.4,300.0 302.5,300.0 313.5,300.0 324.6,298.6 335.7,265.4 346.8,300.0 357.8,289.9 368.9,300.0 380.0,300.0 391.1,300.0 402.2,285.6 413.2,300.0 424.3,292.8 435.4,298.6 446.5,298.6 457.5,300.0 468.6,300.0 479.7,264.0 490.8,300.0 501.8,300.0 512.9,295.7 524.0,300.0 535.1,300.0 546.2,300.0 557.2,300.0 568.3,265.4 579.4,300.0 590.5,300.0 601.5,300.0 612.6,300.0 623.7,295.7 634.8,298.6 645.8,274.1 656.9,135.8 668.0,272.6 668,300"/>
-<polyline class="trend" points="92.0,300.0 103.1,300.0 114.2,300.0 125.2,300.0 136.3,300.0 147.4,297.1 158.5,298.6 169.5,297.1 180.6,285.6 191.7,300.0 202.8,300.0 213.8,300.0 224.9,287.0 236.0,300.0 247.1,300.0 258.2,300.0 269.2,300.0 280.3,300.0 291.4,300.0 302.5,300.0 313.5,300.0 324.6,298.6 335.7,265.4 346.8,300.0 357.8,289.9 368.9,300.0 380.0,300.0 391.1,300.0 402.2,285.6 413.2,300.0 424.3,292.8 435.4,298.6 446.5,298.6 457.5,300.0 468.6,300.0 479.7,264.0 490.8,300.0 501.8,300.0 512.9,295.7 524.0,300.0 535.1,300.0 546.2,300.0 557.2,300.0 568.3,265.4 579.4,300.0 590.5,300.0 601.5,300.0 612.6,300.0 623.7,295.7 634.8,298.6 645.8,274.1 656.9,135.8 668.0,272.6"/>
+<polygon class="area" points="92,300 92.0,300.0 111.1,300.0 133.4,300.0 155.6,285.6 177.9,300.0 200.2,291.4 222.5,300.0 244.8,298.6 267.0,300.0 289.3,285.6 311.6,278.4 333.9,300.0 356.1,300.0 378.4,295.7 400.7,300.0 423.0,300.0 445.2,300.0 467.5,300.0 489.8,265.4 512.1,300.0 534.3,300.0 556.6,300.0 578.9,300.0 601.2,295.7 623.4,298.6 645.7,274.1 668.0,105.6 668.0,300"/>
+<polyline class="trend" points="92.0,300.0 111.1,300.0 133.4,300.0 155.6,285.6 177.9,300.0 200.2,291.4 222.5,300.0 244.8,298.6 267.0,300.0 289.3,285.6 311.6,278.4 333.9,300.0 356.1,300.0 378.4,295.7 400.7,300.0 423.0,300.0 445.2,300.0 467.5,300.0 489.8,265.4 512.1,300.0 534.3,300.0 556.6,300.0 578.9,300.0 601.2,295.7 623.4,298.6 645.7,274.1 668.0,105.6"/>
 <line class="axis" x1="92" y1="78" x2="92" y2="300"/>
 <line class="axis" x1="92" y1="300" x2="674" y2="300"/>
 <text class="dim ax" transform="translate(48 192.0) rotate(-90)" text-anchor="middle">contributions / week</text>
-<line class="axis" x1="136.3" y1="300" x2="136.3" y2="304"/>
-<text class="dim ax" x="136.3" y="316" text-anchor="middle">nov</text>
-<line class="axis" x1="191.7" y1="300" x2="191.7" y2="304"/>
-<text class="dim ax" x="191.7" y="316" text-anchor="middle">dec</text>
-<line class="axis" x1="236.0" y1="300" x2="236.0" y2="304"/>
-<text class="dim ax" x="236.0" y="316" text-anchor="middle">jan</text>
-<line class="axis" x1="280.3" y1="300" x2="280.3" y2="304"/>
-<text class="dim ax" x="280.3" y="316" text-anchor="middle">feb</text>
-<line class="axis" x1="324.6" y1="300" x2="324.6" y2="304"/>
-<text class="dim ax" x="324.6" y="316" text-anchor="middle">mar</text>
-<line class="axis" x1="380.0" y1="300" x2="380.0" y2="304"/>
-<text class="dim ax" x="380.0" y="316" text-anchor="middle">apr</text>
-<line class="axis" x1="424.3" y1="300" x2="424.3" y2="304"/>
-<text class="dim ax" x="424.3" y="316" text-anchor="middle">may</text>
-<line class="axis" x1="479.7" y1="300" x2="479.7" y2="304"/>
-<text class="dim ax" x="479.7" y="316" text-anchor="middle">jun</text>
-<line class="axis" x1="524.0" y1="300" x2="524.0" y2="304"/>
-<text class="dim ax" x="524.0" y="316" text-anchor="middle">jul</text>
-<line class="axis" x1="568.3" y1="300" x2="568.3" y2="304"/>
-<text class="dim ax" x="568.3" y="316" text-anchor="middle">aug</text>
-<line class="axis" x1="623.7" y1="300" x2="623.7" y2="304"/>
-<text class="dim ax" x="623.7" y="316" text-anchor="middle">sep</text>
-<line class="axis" x1="668.0" y1="300" x2="668.0" y2="304"/>
-<text class="dim ax" x="668.0" y="316" text-anchor="middle">oct</text>
-<circle class="peak" cx="656.9" cy="135.8" r="3"/>
-<text class="ax" x="649.9" y="139.8" text-anchor="end">best week · 114</text>
+<line class="axis" x1="171.6" y1="300" x2="171.6" y2="304"/>
+<text class="dim ax" x="171.6" y="316" text-anchor="middle">may</text>
+<line class="axis" x1="270.2" y1="300" x2="270.2" y2="304"/>
+<text class="dim ax" x="270.2" y="316" text-anchor="middle">jun</text>
+<line class="axis" x1="365.7" y1="300" x2="365.7" y2="304"/>
+<text class="dim ax" x="365.7" y="316" text-anchor="middle">jul</text>
+<line class="axis" x1="464.3" y1="300" x2="464.3" y2="304"/>
+<text class="dim ax" x="464.3" y="316" text-anchor="middle">aug</text>
+<line class="axis" x1="563.0" y1="300" x2="563.0" y2="304"/>
+<text class="dim ax" x="563.0" y="316" text-anchor="middle">sep</text>
+<line class="axis" x1="658.5" y1="300" x2="658.5" y2="304"/>
+<text class="dim ax" x="658.5" y="316" text-anchor="middle">oct</text>
 <text class="m" x="44" y="380">top languages by commit</text>
 <pattern id="l0" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(-60)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="409">python</text>
-<rect x="172" y="399" width="98.0" height="12" fill="url(#l0)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="278.0" y="409">65%</text>
+<rect x="172" y="399" width="98.7" height="12" fill="url(#l0)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="278.7" y="409">66%</text>
 <pattern id="l1" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="433">jupyter notebook</text>
-<rect x="172" y="423" width="26.5" height="12" fill="url(#l1)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="206.5" y="433">18%</text>
+<rect x="172" y="423" width="26.1" height="12" fill="url(#l1)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="206.1" y="433">17%</text>
 <pattern id="l2" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(0)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="457">html</text>
-<rect x="172" y="447" width="9.8" height="12" fill="url(#l2)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="189.8" y="457">7%</text>
+<rect x="172" y="447" width="9.7" height="12" fill="url(#l2)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="189.7" y="457">6%</text>
 <pattern id="l3" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="481">c</text>
-<rect x="172" y="471" width="7.8" height="12" fill="url(#l3)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="187.8" y="481">5%</text>
+<rect x="172" y="471" width="7.7" height="12" fill="url(#l3)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="187.7" y="481">5%</text>
 <pattern id="l4" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(60)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="505">typescript</text>
-<rect x="172" y="495" width="5.9" height="12" fill="url(#l4)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="185.9" y="505">4%</text>
+<rect x="172" y="495" width="5.8" height="12" fill="url(#l4)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="185.8" y="505">4%</text>
 <text class="m" x="380" y="380">facts</text>
-<text x="380" y="411"><tspan class="b">280</tspan><tspan class="dim" dx="8" style="font-size:11px">contributions this year</tspan></text>
-<text x="380" y="433"><tspan class="b">7d</tspan><tspan class="dim" dx="8" style="font-size:11px">longest streak · current 7d</tspan></text>
-<text x="380" y="455"><tspan class="b">27</tspan><tspan class="dim" dx="8" style="font-size:11px">on sep 30, my busiest day</tspan></text>
-<text x="380" y="477"><tspan class="b">153</tspan><tspan class="dim" dx="8" style="font-size:11px">commits</tspan></text>
+<text x="380" y="411"><tspan class="b">226</tspan><tspan class="dim" dx="8" style="font-size:11px">contributions in the last 6 months</tspan></text>
+<text x="380" y="433"><tspan class="b">7d</tspan><tspan class="dim" dx="8" style="font-size:11px">longest streak</tspan></text>
+<text x="380" y="455"><tspan class="b">7d</tspan><tspan class="dim" dx="8" style="font-size:11px">current streak</tspan></text>
 </svg>
