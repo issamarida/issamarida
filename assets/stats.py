@@ -57,6 +57,28 @@ def nice_step(peak, ticks=4):
     return next(m * mag for m in (1, 2, 2.5, 5, 10) if m * mag >= raw)
 
 
+def smooth(pts):
+    """SVG path through pts as a monotone cubic curve, so it bends without overshooting."""
+    n = len(pts)
+    if n < 3:
+        return "M" + " L".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    d = [(pts[i + 1][1] - pts[i][1]) / (pts[i + 1][0] - pts[i][0]) for i in range(n - 1)]
+    m = [d[0]] + [0 if d[i - 1] * d[i] <= 0 else (d[i - 1] + d[i]) / 2 for i in range(1, n - 1)] + [d[-1]]
+    for i in range(n - 1):  # Fritsch-Carlson: clamp tangents to keep each segment monotone
+        if d[i] == 0:
+            m[i] = m[i + 1] = 0
+        else:
+            a, b = m[i] / d[i], m[i + 1] / d[i]
+            if a * a + b * b > 9:
+                t = 3 / math.hypot(a, b)
+                m[i], m[i + 1] = t * a * d[i], t * b * d[i]
+    path = f"M{pts[0][0]:.1f},{pts[0][1]:.1f}"
+    for (xa, ya), (xb, yb), ma, mb in zip(pts, pts[1:], m, m[1:]):
+        h = (xb - xa) / 3
+        path += f" C{xa + h:.1f},{ya + ma * h:.1f} {xb - h:.1f},{yb - mb * h:.1f} {xb:.1f},{yb:.1f}"
+    return path
+
+
 def timeseries(days, x0, y0, x1, y1):
     """Monthly totals, one point on the 1st of each month, as a filled green area chart."""
     months = Counter()
@@ -69,7 +91,7 @@ def timeseries(days, x0, y0, x1, y1):
     sx = lambda i: x0 + (x1 - x0) * i / max(len(keys) - 1, 1)
     sy = lambda v: y1 - (y1 - y0) * v / top
     pts = [(sx(i), sy(t)) for i, t in enumerate(totals)]
-    line = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    line = smooth(pts)
     out = []
     v = 0
     while v <= top:  # y axis: gridline, tick and label per step
@@ -79,8 +101,8 @@ def timeseries(days, x0, y0, x1, y1):
         out.append(f'<line class="axis" x1="{x0 - 4}" y1="{y:.1f}" x2="{x0}" y2="{y:.1f}"/>')
         out.append(f'<text class="dim ax" x="{x0 - 8}" y="{y + 3.5:.1f}" text-anchor="end">{v:g}</text>')
         v += step
-    out += [f'<polygon class="area" points="{x0},{y1} {line} {pts[-1][0]:.1f},{y1}"/>',
-            f'<polyline class="trend" points="{line}"/>',
+    out += [f'<path class="area" d="M{x0},{y1} L{line[1:]} L{pts[-1][0]:.1f},{y1}Z"/>',
+            f'<path class="trend" d="{line}"/>',
             f'<line class="axis" x1="{x0}" y1="{y0 - 6}" x2="{x0}" y2="{y1}"/>',
             f'<line class="axis" x1="{x0}" y1="{y1}" x2="{x1 + 6}" y2="{y1}"/>',
             f'<text class="dim ax" transform="translate({x0 - 44} {(y0 + y1) / 2}) rotate(-90)" '
@@ -109,7 +131,7 @@ def render(user):
            ":root{--ink:#1b1b1b;--pen:#d9480f;--green:#2da44e;--faint:#1b1b1b1f}",
            "@media (prefers-color-scheme:dark){:root{--ink:#e8e6e1;--pen:#ff8a4c;--green:#3fb950;--faint:#e8e6e11f}}",
            "text{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:var(--ink)}",
-           ".m{font-size:10px;letter-spacing:.12em;fill:var(--pen)}.b{font-size:16px}.dim{opacity:.55}",
+           ".m{font-size:10px;letter-spacing:.12em;fill:var(--pen)}.b{font-size:20px}.lg{font-size:14px}.dim{opacity:.55}",
            ".l{stroke:var(--pen);stroke-width:.8;fill:none}",
            ".hl{stroke:var(--ink);stroke-width:.45}.ax{font-size:10px}",
            ".grid{stroke:var(--faint);stroke-dasharray:2 3}.axis{stroke:var(--ink);stroke-width:.6;opacity:.5}",
@@ -128,23 +150,23 @@ def render(user):
     total = sum(langs.values()) or 1
     out.append('<text class="m" x="44" y="380">top languages by commit</text>')
     for i, (name, size) in enumerate(langs.most_common(5)):
-        y, frac = 398 + i * 24, size / total
+        y, frac = 396 + i * 28, size / total
         out.append(f'<pattern id="l{i}" width="3" height="3" patternUnits="userSpaceOnUse" '
                    f'patternTransform="rotate({-60 + 30 * i})"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>')
-        out.append(f'<text x="44" y="{y + 11}">{name.lower().replace("&", "&amp;")}</text>')
-        out.append(f'<rect x="172" y="{y + 1}" width="{max(2, 150 * frac):.1f}" height="12" fill="url(#l{i})" '
+        out.append(f'<text class="lg" x="44" y="{y + 12}">{name.lower().replace("&", "&amp;")}</text>')
+        out.append(f'<rect x="196" y="{y}" width="{max(2, 110 * frac):.1f}" height="14" fill="url(#l{i})" '
                    'stroke="var(--ink)" stroke-width=".6"/>')
-        out.append(f'<text class="dim" x="{180 + 150 * frac:.1f}" y="{y + 11}">{frac:.0%}</text>')
+        out.append(f'<text class="dim lg" x="{204 + 110 * frac:.1f}" y="{y + 12}">{frac:.0%}</text>')
 
     facts = [
         (f'{sum(d["contributionCount"] for d in days):,}', "contributions in the last 6 months"),
         (f"{longest}d", "longest streak"),
         (f"{current}d", "current streak"),
     ]
-    out.append('<text class="m" x="380" y="380">facts</text>')
+    out.append('<text class="m" x="372" y="380">facts</text>')
     for i, (big, small) in enumerate(facts):
-        out.append(f'<text x="380" y="{411 + i * 22}"><tspan class="b">{big}</tspan>'
-                   f'<tspan class="dim" dx="8" style="font-size:11px">{small}</tspan></text>')
+        out.append(f'<text x="372" y="{412 + i * 30}"><tspan class="b">{big}</tspan>'
+                   f'<tspan class="dim" dx="8" style="font-size:13px">{small}</tspan></text>')
     out.append("</svg>")
     return "\n".join(out)
 
