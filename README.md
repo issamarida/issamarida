@@ -10,6 +10,8 @@ i love working fast and efficiently, especially on problems that demand complex 
 
 currently based in madrid.<br>
 
+looking for work :3.<br>
+
 mail : issamaarida@gmail.com
 
 <img src="assets/cat.svg" width="460" alt="ASCII cat spinning on a pen-plotter page">
