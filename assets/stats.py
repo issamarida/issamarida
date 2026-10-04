@@ -1,5 +1,5 @@
-"""Draw a pen-plotter style SVG of a GitHub user's last year: a 6-month
-weekly contribution chart, language bars and a few facts.
+"""Draw a pen-plotter style SVG of a GitHub user's last 6 months: a
+monthly contribution chart, language bars and a few facts.
 
     GITHUB_TOKEN=... python3 assets/stats.py issamarida > assets/stats.svg
 """
@@ -12,9 +12,9 @@ import urllib.request
 from collections import Counter
 
 QUERY = """
-query($login: String!) {
+query($login: String!, $from: DateTime!) {
   user(login: $login) {
-    contributionsCollection {
+    contributionsCollection(from: $from) {
       commitContributionsByRepository(maxRepositories: 100) { contributions { totalCount } repository { primaryLanguage { name } } }
       contributionCalendar { weeks { contributionDays { date contributionCount } } }
     }
@@ -24,10 +24,10 @@ query($login: String!) {
 W, H = 720, 560
 
 
-def fetch(login, token):
+def fetch(login, token, since):
     req = urllib.request.Request(
         "https://api.github.com/graphql",
-        data=json.dumps({"query": QUERY, "variables": {"login": login}}).encode(),
+        data=json.dumps({"query": QUERY, "variables": {"login": login, "from": f"{since}T00:00:00Z"}}).encode(),
         headers={"Authorization": f"bearer {token}", "Content-Type": "application/json"},
     )
     body = json.load(urllib.request.urlopen(req))
@@ -57,16 +57,18 @@ def nice_step(peak, ticks=4):
 
 
 def timeseries(days, x0, y0, x1, y1):
-    """Weekly totals as a filled green area chart with a month on each x tick."""
-    first, last = (dt.date.fromisoformat(days[i]["date"]) for i in (0, -1))
-    weeks = [days[i:i + 7] for i in range(0, len(days), 7)]
-    totals = [sum(d["contributionCount"] for d in w) for w in weeks]
+    """Monthly totals, one point on the 1st of each month, as a filled green area chart."""
+    months = Counter()
+    for d in days:
+        months[d["date"][:7]] += d["contributionCount"]
+    keys = sorted(months)[-6:]  # the calendar may pad the first week into the previous month
+    totals = [months[k] for k in keys]
     step = nice_step(max(totals, default=0) or 1)
     top = step * math.ceil((max(totals, default=0) or 1) / step)
-    sx = lambda d: x0 + (x1 - x0) * (d - first).days / max((last - first).days, 1)
+    sx = lambda i: x0 + (x1 - x0) * i / max(len(keys) - 1, 1)
     sy = lambda v: y1 - (y1 - y0) * v / top
-    pts = [(sx(dt.date.fromisoformat(w[-1]["date"])), sy(t)) for w, t in zip(weeks, totals)]
-    line = " ".join(f"{x:.1f},{y:.1f}" for x, y in [(x0, sy(totals[0]))] + pts)
+    pts = [(sx(i), sy(t)) for i, t in enumerate(totals)]
+    line = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
     out = []
     v = 0
     while v <= top:  # y axis: gridline, tick and label per step
@@ -81,13 +83,13 @@ def timeseries(days, x0, y0, x1, y1):
             f'<line class="axis" x1="{x0}" y1="{y0 - 6}" x2="{x0}" y2="{y1}"/>',
             f'<line class="axis" x1="{x0}" y1="{y1}" x2="{x1 + 6}" y2="{y1}"/>',
             f'<text class="dim ax" transform="translate({x0 - 44} {(y0 + y1) / 2}) rotate(-90)" '
-            'text-anchor="middle">contributions / week</text>']
-    m = dt.date(first.year + first.month // 12, first.month % 12 + 1, 1)
-    while m <= last:  # x axis: a tick and label at the start of each month
-        x = sx(m)
+            'text-anchor="middle">contributions / month</text>']
+    for k, t, (x, y) in zip(keys, totals, pts):  # x axis: the 1st of each month
+        label = dt.date.fromisoformat(k + "-01").strftime("%b 1").lower()
         out.append(f'<line class="axis" x1="{x:.1f}" y1="{y1}" x2="{x:.1f}" y2="{y1 + 4}"/>')
-        out.append(f'<text class="dim ax" x="{x:.1f}" y="{y1 + 16}" text-anchor="middle">{m:%b}</text>'.lower())
-        m = dt.date(m.year + m.month // 12, m.month % 12 + 1, 1)
+        out.append(f'<text class="dim ax" x="{x:.1f}" y="{y1 + 16}" text-anchor="middle">{label}</text>')
+        out.append(f'<circle class="dot" cx="{x:.1f}" cy="{y:.1f}" r="3"/>')
+        out.append(f'<text class="ax" x="{x:.1f}" y="{y - 9:.1f}" text-anchor="middle">{t}</text>')
     return out
 
 
@@ -96,7 +98,6 @@ def render(user):
     weeks = [w["contributionDays"] for w in cc["contributionCalendar"]["weeks"]]
     days = [d for w in weeks for d in w]
     longest, current = streaks(days)
-    recent = days[-182:]  # roughly the last 6 months
     langs = Counter()
     for r in cc["commitContributionsByRepository"]:
         if r["repository"]["primaryLanguage"]:
@@ -112,7 +113,7 @@ def render(user):
            ".hl{stroke:var(--ink);stroke-width:.45}.ax{font-size:10px}",
            ".grid{stroke:var(--faint);stroke-dasharray:2 3}.axis{stroke:var(--ink);stroke-width:.6;opacity:.5}",
            ".area{fill:url(#fade)}.trend{fill:none;stroke:var(--green);stroke-width:1.6;stroke-linejoin:round}",
-           ".s0{stop-color:var(--green);stop-opacity:.55}.s1{stop-color:var(--green);stop-opacity:.04}",
+           ".dot{fill:var(--green)}.s0{stop-color:var(--green);stop-opacity:.85}.s1{stop-color:var(--green);stop-opacity:.35}",
            '</style><defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">'
            '<stop class="s0" offset="0"/><stop class="s1" offset="1"/></linearGradient></defs>']
     # plotter furniture, same as the cat
@@ -120,7 +121,7 @@ def render(user):
     for x, y, dx, dy in [(16, 16, 1, 1), (W - 16, 16, -1, 1), (16, H - 16, 1, -1), (W - 16, H - 16, -1, -1)]:
         out.append(f'<path class="l" d="M{x} {y + 14 * dy}V{y}H{x + 14 * dx}"/>')
     out.append('<text class="m" x="44" y="52">contributions in the last 6 months</text>')
-    out += timeseries(recent, 92, 84, 668, 300)
+    out += timeseries(days, 92, 84, 668, 300)
 
     # languages: hatched bars, a different pen angle per language
     total = sum(langs.values()) or 1
@@ -135,7 +136,7 @@ def render(user):
         out.append(f'<text class="dim" x="{180 + 150 * frac:.1f}" y="{y + 11}">{frac:.0%}</text>')
 
     facts = [
-        (f'{sum(d["contributionCount"] for d in recent):,}', "contributions in the last 6 months"),
+        (f'{sum(d["contributionCount"] for d in days):,}', "contributions in the last 6 months"),
         (f"{longest}d", "longest streak"),
         (f"{current}d", "current streak"),
     ]
@@ -147,5 +148,11 @@ def render(user):
     return "\n".join(out)
 
 
+def six_months_ago(today):
+    """The 1st of the month five months back, so the window holds six month starts."""
+    y, m = divmod(today.year * 12 + today.month - 1 - 5, 12)
+    return dt.date(y, m + 1, 1)
+
+
 if __name__ == "__main__":
-    print(render(fetch(sys.argv[1], os.environ["GITHUB_TOKEN"])))
+    print(render(fetch(sys.argv[1], os.environ["GITHUB_TOKEN"], six_months_ago(dt.date.today()))))
