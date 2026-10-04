@@ -16,6 +16,6 @@ mail : issamaarida@gmail.com
 
 ## github
 
-<img src="assets/stats.svg" width="720" alt="Isometric skyline of my GitHub contributions, top languages and stats">
+<img src="assets/stats.svg" width="720" alt="Weekly GitHub contributions over the last year, top languages and stats">
 
 </div>

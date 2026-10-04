@@ -1,11 +1,10 @@
-"""Draw a pen-plotter style SVG of a GitHub user's last year: an isometric
-contribution skyline, language bars and a few facts.
+"""Draw a pen-plotter style SVG of a GitHub user's last year: a
+weekly contribution chart, language bars and a few facts.
 
     GITHUB_TOKEN=... python3 assets/stats.py issamarida > assets/stats.svg
 """
 import datetime as dt
 import json
-import math
 import os
 import sys
 import urllib.request
@@ -27,7 +26,6 @@ query($login: String!) {
 }"""
 
 W, H = 720, 560
-WEEK, DAY = (9.4, -2.6), (-6.2, 5.6)  # screen offset of one step along each grid axis
 WEEKDAYS = ["sundays", "mondays", "tuesdays", "wednesdays", "thursdays", "fridays", "saturdays"]
 
 
@@ -57,33 +55,31 @@ def streaks(days):
     return longest, current
 
 
-def poly(points, cls):
-    return f'<polygon class="{cls}" points="{" ".join(f"{x:.1f},{y:.1f}" for x, y in points)}"/>'
-
-
-def skyline(weeks, x0, y0):
-    peak = max((d["contributionCount"] for w in weeks for d in w), default=0) or 1
-    at = lambda w, d, h=0: (x0 + w * WEEK[0] + d * DAY[0], y0 + w * WEEK[1] + d * DAY[1] - h)
-    out = []
-    # back to front: low weekday rows first, later weeks (further up the slope) first
-    for d in range(7):
-        for w in reversed(range(len(weeks))):
-            day = next((x for x in weeks[w] if x["weekday"] == d), None)
-            if day is None:
-                continue
-            c = day["contributionCount"]
-            if not c:
-                out.append(poly([at(w, d), at(w + 1, d), at(w + 1, d + 1), at(w, d + 1)], "g"))
-                continue
-            h = 4 + 72 * math.sqrt(c / peak)
-            out.append(poly([at(w, d + 1), at(w + 1, d + 1), at(w + 1, d + 1, h), at(w, d + 1, h)], "s1"))
-            out.append(poly([at(w, d), at(w, d + 1), at(w, d + 1, h), at(w, d, h)], "s2"))
-            out.append(poly([at(w, d, h), at(w + 1, d, h), at(w + 1, d + 1, h), at(w, d + 1, h)],
-                            "t" if c < peak * 0.6 else "t hot"))
+def timeseries(weeks, x0, y0, x1, y1):
+    """Weekly totals as a filled green area chart, GitHub style."""
+    totals = [sum(d["contributionCount"] for d in w) for w in weeks]
+    peak = max(totals, default=0) or 1
+    step = (x1 - x0) / max(len(totals) - 1, 1)
+    pts = [(x0 + i * step, y1 - (y1 - y0) * t / peak) for i, t in enumerate(totals)]
+    line = " ".join(f"{x:.1f},{y:.1f}" for x, y in pts)
+    out = [f'<line class="grid" x1="{x0}" y1="{y}" x2="{x1}" y2="{y}"/>' for y in (y0, (y0 + y1) / 2)]
+    out += [f'<text class="dim ax" x="{x0 - 8}" y="{y0 + 4}" text-anchor="end">{peak}</text>',
+            f'<text class="dim ax" x="{x0 - 8}" y="{y1 + 4}" text-anchor="end">0</text>',
+            f'<polygon class="area" points="{x0},{y1} {line} {x1},{y1}"/>',
+            f'<polyline class="trend" points="{line}"/>',
+            f'<line class="axis" x1="{x0}" y1="{y1}" x2="{x1}" y2="{y1}"/>']
+    month = None
+    for (x, _), w in zip(pts, weeks):
+        m = dt.date.fromisoformat(w[0]["date"]).strftime("%b").lower()
+        if m != month and month is not None:
+            out.append(f'<text class="dim ax" x="{x:.1f}" y="{y1 + 18}" text-anchor="middle">{m}</text>')
+        month = m
+    px, py = pts[totals.index(peak)]
+    out.append(f'<circle class="peak" cx="{px:.1f}" cy="{py:.1f}" r="3"/>')
     return out
 
 
-def render(user, today):
+def render(user):
     cc = user["contributionsCollection"]
     weeks = [w["contributionDays"] for w in cc["contributionCalendar"]["weeks"]]
     days = [d for w in weeks for d in w]
@@ -101,28 +97,23 @@ def render(user, today):
 
     out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">',
            "<style>",
-           ":root{--ink:#1b1b1b;--pen:#d9480f;--bg:#ffffff;--faint:#1b1b1b2e}",
-           "@media (prefers-color-scheme:dark){:root{--ink:#e8e6e1;--pen:#ff8a4c;--bg:#0d1117;--faint:#e8e6e12e}}",
+           ":root{--ink:#1b1b1b;--pen:#d9480f;--green:#2da44e;--faint:#1b1b1b1f}",
+           "@media (prefers-color-scheme:dark){:root{--ink:#e8e6e1;--pen:#ff8a4c;--green:#3fb950;--faint:#e8e6e11f}}",
            "text{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:var(--ink)}",
            ".m{font-size:10px;letter-spacing:.12em;fill:var(--pen)}.b{font-size:16px}.dim{opacity:.55}",
            ".l{stroke:var(--pen);stroke-width:.8;fill:none}",
-           "polygon{stroke:var(--ink);stroke-width:.55;stroke-linejoin:round}",
-           ".g{fill:none;stroke:var(--faint)}.t{fill:var(--bg)}.hot{fill:var(--pen)}",
-           ".s1{fill:url(#h1)}.s2{fill:url(#h2)}.hl{stroke:var(--ink);stroke-width:.45}.pb{fill:var(--bg)}",
-           "</style><defs>",
-           '<pattern id="h1" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(-20)">'
-           '<rect class="pb" width="3" height="3"/><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>',
-           '<pattern id="h2" width="2" height="2" patternUnits="userSpaceOnUse" patternTransform="rotate(40)">'
-           '<rect class="pb" width="2" height="2"/><line class="hl" x1="0" y1="0" x2="0" y2="2"/></pattern>',
-           "</defs>"]
+           ".hl{stroke:var(--ink);stroke-width:.45}.ax{font-size:10px}",
+           ".grid{stroke:var(--faint);stroke-dasharray:2 3}.axis{stroke:var(--ink);stroke-width:.6;opacity:.5}",
+           ".area{fill:url(#fade)}.trend{fill:none;stroke:var(--green);stroke-width:1.6;stroke-linejoin:round}",
+           ".peak{fill:var(--green)}.s0{stop-color:var(--green);stop-opacity:.55}.s1{stop-color:var(--green);stop-opacity:.04}",
+           '</style><defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">'
+           '<stop class="s0" offset="0"/><stop class="s1" offset="1"/></linearGradient></defs>']
     # plotter furniture, same as the cat
     out.append(f'<rect class="l" x="24" y="24" width="{W - 48}" height="{H - 48}" stroke-dasharray="2 4"/>')
     for x, y, dx, dy in [(16, 16, 1, 1), (W - 16, 16, -1, 1), (16, H - 16, 1, -1), (W - 16, H - 16, -1, -1)]:
         out.append(f'<path class="l" d="M{x} {y + 14 * dy}V{y}H{x + 14 * dx}"/>')
-    out.append('<text class="m" x="44" y="52">a year of commits, as a skyline</text>')
-    out.append(f'<text class="m" x="{W - 44}" y="52" text-anchor="end">plotted {today}</text>')
-
-    out += skyline(weeks, 130, 292)
+    out.append('<text class="m" x="44" y="52">contributions in the last year</text>')
+    out += timeseries(weeks, 72, 90, 672, 310)
 
     # languages: hatched bars, a different pen angle per language
     total = sum(langs.values()) or 1
@@ -147,12 +138,11 @@ def render(user, today):
     ]
     out.append('<text class="m" x="380" y="380">facts</text>')
     for i, (big, small) in enumerate(facts):
-        y = 411 + i * 22
-        out.append(f'<text class="b" x="490" y="{y}" text-anchor="end">{big}</text>')
-        out.append(f'<text class="dim" x="500" y="{y}" style="font-size:11px">{small}</text>')
+        out.append(f'<text x="380" y="{411 + i * 22}"><tspan class="b">{big}</tspan>'
+                   f'<tspan class="dim" dx="8" style="font-size:11px">{small}</tspan></text>')
     out.append("</svg>")
     return "\n".join(out)
 
 
 if __name__ == "__main__":
-    print(render(fetch(sys.argv[1], os.environ["GITHUB_TOKEN"]), dt.date.today().isoformat()))
+    print(render(fetch(sys.argv[1], os.environ["GITHUB_TOKEN"])))
