@@ -11,6 +11,5 @@ currently based in madrid.
 
 <img src="assets/cat.svg" width="460" alt="ASCII cat spinning on a pen-plotter page">
 
-### Issam Arida
 
 </div>
