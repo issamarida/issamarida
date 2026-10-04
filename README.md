@@ -6,6 +6,6 @@
 
 Full-Stack AI Engineer
 
-<a href="https://www.linkedin.com/in/issam-arida/">LinkedIn</a> · <a href="mailto:issamaarida@gmail.com">Email</a>
+<a href="https://www.linkedin.com/in/issam-arida/">LinkedIn</a>
 
 </div>
