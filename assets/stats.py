@@ -132,9 +132,9 @@ def render(user, today):
         out.append(f'<pattern id="l{i}" width="3" height="3" patternUnits="userSpaceOnUse" '
                    f'patternTransform="rotate({-60 + 30 * i})"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>')
         out.append(f'<text x="44" y="{y + 11}">{name.lower().replace("&", "&amp;")}</text>')
-        out.append(f'<rect x="150" y="{y + 1}" width="{max(2, 150 * frac):.1f}" height="12" fill="url(#l{i})" '
+        out.append(f'<rect x="172" y="{y + 1}" width="{max(2, 150 * frac):.1f}" height="12" fill="url(#l{i})" '
                    'stroke="var(--ink)" stroke-width=".6"/>')
-        out.append(f'<text class="dim" x="{158 + 150 * frac:.1f}" y="{y + 11}">{frac:.0%}</text>')
+        out.append(f'<text class="dim" x="{180 + 150 * frac:.1f}" y="{y + 11}">{frac:.0%}</text>')
 
     facts = [
         (f'{cc["contributionCalendar"]["totalContributions"]:,}', "contributions this year"),
