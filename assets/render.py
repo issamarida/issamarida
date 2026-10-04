@@ -119,7 +119,7 @@ def svg():
             for x in np.arange(cx - rx - 30, cx + rx, 5)]
     out.append("</g>")
     out.append(f'<ellipse class="l" cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}" stroke-dasharray="1 3"/>')
-    out.append(f'<text class="m" x="{ox}" y="{H - oy + 4}">FIG. 01 — FELIS CATUS, ROTATING</text>')
+    out.append(f'<text class="m" x="{ox}" y="{H - oy + 4}">silly feline rotating</text>')
     for i in range(FRAMES):
         theta = 2 * np.pi * i / FRAMES
         out.append(f'<g class="f" style="animation-delay:{SECONDS * i / FRAMES:.3f}s">')
