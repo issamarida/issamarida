@@ -80,17 +80,17 @@ def smooth(pts):
 
 
 def timeseries(days, x0, y0, x1, y1):
-    """Monthly totals, one point on the 1st of each month, as a filled green area chart."""
-    months = Counter()
-    for d in days:
-        months[d["date"][:7]] += d["contributionCount"]
-    keys = sorted(months)[-6:]  # the calendar may pad the first week into the previous month
-    totals = [months[k] for k in keys]
-    step = nice_step(max(totals, default=0) or 1)
-    top = step * math.ceil((max(totals, default=0) or 1) / step)
-    sx = lambda i: x0 + (x1 - x0) * i / max(len(keys) - 1, 1)
+    """Running total of contributions, checked on the 1st of each month and today."""
+    starts = sorted({dt.date.fromisoformat(d["date"][:7] + "-01") for d in days})[-6:]
+    days = [d for d in days if d["date"] >= starts[0].isoformat()]  # drop calendar padding
+    last = dt.date.fromisoformat(days[-1]["date"])
+    checks = starts + [last + dt.timedelta(1)] if last >= starts[-1] else starts
+    totals = [sum(d["contributionCount"] for d in days if d["date"] < c.isoformat()) for c in checks]
+    step = nice_step(max(totals) or 1)
+    top = step * math.ceil((max(totals) or 1) / step)
+    sx = lambda c: x0 + (x1 - x0) * (c - starts[0]).days / max((checks[-1] - starts[0]).days, 1)
     sy = lambda v: y1 - (y1 - y0) * v / top
-    pts = [(sx(i), sy(t)) for i, t in enumerate(totals)]
+    pts = [(sx(c), sy(t)) for c, t in zip(checks, totals)]
     line = smooth(pts)
     out = []
     v = 0
@@ -106,13 +106,11 @@ def timeseries(days, x0, y0, x1, y1):
             f'<line class="axis" x1="{x0}" y1="{y0 - 6}" x2="{x0}" y2="{y1}"/>',
             f'<line class="axis" x1="{x0}" y1="{y1}" x2="{x1 + 6}" y2="{y1}"/>',
             f'<text class="dim ax" transform="translate({x0 - 44} {(y0 + y1) / 2}) rotate(-90)" '
-            'text-anchor="middle">contributions / month</text>']
-    for k, t, (x, y) in zip(keys, totals, pts):  # x axis: the 1st of each month
-        label = dt.date.fromisoformat(k + "-01").strftime("%b 1").lower()
+            'text-anchor="middle">total contributions</text>']
+    for m in starts:  # x axis: the 1st of each month
+        x = sx(m)
         out.append(f'<line class="axis" x1="{x:.1f}" y1="{y1}" x2="{x:.1f}" y2="{y1 + 4}"/>')
-        out.append(f'<text class="dim ax" x="{x:.1f}" y="{y1 + 16}" text-anchor="middle">{label}</text>')
-        out.append(f'<circle class="dot" cx="{x:.1f}" cy="{y:.1f}" r="3"/>')
-        out.append(f'<text class="ax" x="{x:.1f}" y="{y - 9:.1f}" text-anchor="middle">{t}</text>')
+        out.append(f'<text class="dim ax" x="{x:.1f}" y="{y1 + 16}" text-anchor="middle">{m:%b 1}</text>'.lower())
     return out
 
 
@@ -136,7 +134,7 @@ def render(user):
            ".hl{stroke:var(--ink);stroke-width:.45}.ax{font-size:10px}",
            ".grid{stroke:var(--faint);stroke-dasharray:2 3}.axis{stroke:var(--ink);stroke-width:.6;opacity:.5}",
            ".area{fill:url(#fade)}.trend{fill:none;stroke:var(--green);stroke-width:1.6;stroke-linejoin:round}",
-           ".dot{fill:var(--green)}.s0{stop-color:var(--green);stop-opacity:.85}.s1{stop-color:var(--green);stop-opacity:.35}",
+           ".s0{stop-color:var(--green);stop-opacity:.85}.s1{stop-color:var(--green);stop-opacity:.35}",
            '</style><defs><linearGradient id="fade" x1="0" y1="0" x2="0" y2="1">'
            '<stop class="s0" offset="0"/><stop class="s1" offset="1"/></linearGradient></defs>']
     # plotter furniture, same as the cat
