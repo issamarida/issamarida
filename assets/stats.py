@@ -12,9 +12,9 @@ import urllib.request
 from collections import Counter
 
 QUERY = """
-query($login: String!, $from: DateTime!) {
+query($login: String!, $from: DateTime!, $to: DateTime!) {
   user(login: $login) {
-    contributionsCollection(from: $from) {
+    contributionsCollection(from: $from, to: $to) {
       commitContributionsByRepository(maxRepositories: 100) { contributions { totalCount } repository { primaryLanguage { name } } }
       contributionCalendar { weeks { contributionDays { date contributionCount } } }
     }
@@ -27,7 +27,8 @@ W, H = 720, 560
 def fetch(login, token, since):
     req = urllib.request.Request(
         "https://api.github.com/graphql",
-        data=json.dumps({"query": QUERY, "variables": {"login": login, "from": f"{since}T00:00:00Z"}}).encode(),
+        data=json.dumps({"query": QUERY, "variables": {"login": login, "from": f"{since}T00:00:00Z",
+                                              "to": dt.datetime.now(dt.timezone.utc).isoformat()}}).encode(),
         headers={"Authorization": f"bearer {token}", "Content-Type": "application/json"},
     )
     body = json.load(urllib.request.urlopen(req))
