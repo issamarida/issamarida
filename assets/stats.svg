@@ -19,9 +19,9 @@ polygon{stroke:var(--ink);stroke-width:.55;stroke-linejoin:round}
 <path class="l" d="M704 530V544H690"/>
 <text class="m" x="44" y="52">a year of commits, as a skyline</text>
 <text class="m" x="676" y="52" text-anchor="end">plotted 2026-10-04</text>
-<polygon class="s1" points="612.6,162.4 622.0,159.8 622.0,109.8 612.6,112.4"/>
-<polygon class="s2" points="618.8,156.8 612.6,162.4 612.6,112.4 618.8,106.8"/>
-<polygon class="t" points="618.8,106.8 628.2,104.2 622.0,109.8 612.6,112.4"/>
+<polygon class="s1" points="612.6,162.4 622.0,159.8 622.0,105.8 612.6,108.4"/>
+<polygon class="s2" points="618.8,156.8 612.6,162.4 612.6,108.4 618.8,102.8"/>
+<polygon class="t" points="618.8,102.8 628.2,100.2 622.0,105.8 612.6,108.4"/>
 <polygon class="g" points="609.4,159.4 618.8,156.8 612.6,162.4 603.2,165.0"/>
 <polygon class="g" points="600.0,162.0 609.4,159.4 603.2,165.0 593.8,167.6"/>
 <polygon class="g" points="590.6,164.6 600.0,162.0 593.8,167.6 584.4,170.2"/>
@@ -437,26 +437,26 @@ polygon{stroke:var(--ink);stroke-width:.55;stroke-linejoin:round}
 <text class="m" x="44" y="380">languages</text>
 <pattern id="l0" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(-60)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="409">jupyter notebook</text>
-<rect x="150" y="399" width="72.8" height="12" fill="url(#l0)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="230.8" y="409">49%</text>
+<rect x="172" y="399" width="72.8" height="12" fill="url(#l0)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="252.8" y="409">49%</text>
 <pattern id="l1" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="433">python</text>
-<rect x="150" y="423" width="33.8" height="12" fill="url(#l1)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="191.8" y="433">23%</text>
+<rect x="172" y="423" width="33.8" height="12" fill="url(#l1)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="213.8" y="433">23%</text>
 <pattern id="l2" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(0)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="457">c</text>
-<rect x="150" y="447" width="10.7" height="12" fill="url(#l2)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="168.7" y="457">7%</text>
+<rect x="172" y="447" width="10.7" height="12" fill="url(#l2)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="190.7" y="457">7%</text>
 <pattern id="l3" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="481">makefile</text>
-<rect x="150" y="471" width="9.9" height="12" fill="url(#l3)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="167.9" y="481">7%</text>
+<rect x="172" y="471" width="9.9" height="12" fill="url(#l3)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="189.9" y="481">7%</text>
 <pattern id="l4" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(60)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="505">typescript</text>
-<rect x="150" y="495" width="8.6" height="12" fill="url(#l4)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="166.6" y="505">6%</text>
+<rect x="172" y="495" width="8.6" height="12" fill="url(#l4)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="188.6" y="505">6%</text>
 <text class="m" x="380" y="380">facts</text>
-<text class="b" x="490" y="411" text-anchor="end">162</text>
+<text class="b" x="490" y="411" text-anchor="end">164</text>
 <text class="dim" x="500" y="411" style="font-size:11px">contributions this year</text>
 <text class="b" x="490" y="433" text-anchor="end">7d</text>
 <text class="dim" x="500" y="433" style="font-size:11px">longest streak · current 7d</text>
@@ -464,7 +464,7 @@ polygon{stroke:var(--ink);stroke-width:.55;stroke-linejoin:round}
 <text class="dim" x="500" y="455" style="font-size:11px">busiest day · sep 30</text>
 <text class="b" x="490" y="477" text-anchor="end">wednesdays</text>
 <text class="dim" x="500" y="477" style="font-size:11px">favourite day to ship</text>
-<text class="b" x="490" y="499" text-anchor="end">145</text>
+<text class="b" x="490" y="499" text-anchor="end">147</text>
 <text class="dim" x="500" y="499" style="font-size:11px">commits · 5 prs · 0 issues</text>
 <text class="b" x="490" y="521" text-anchor="end">7</text>
 <text class="dim" x="500" y="521" style="font-size:11px">public repos · 0 stars</text>
