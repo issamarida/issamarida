@@ -16,52 +16,76 @@ text{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:var(--i
 <path class="l" d="M16 530V544H30"/>
 <path class="l" d="M704 530V544H690"/>
 <text class="m" x="44" y="52">contributions in the last year</text>
-<line class="grid" x1="72" y1="90" x2="672" y2="90"/>
-<line class="grid" x1="72" y1="200.0" x2="672" y2="200.0"/>
-<text class="dim ax" x="64" y="94" text-anchor="end">74</text>
-<text class="dim ax" x="64" y="314" text-anchor="end">0</text>
-<polygon class="area" points="72,310 72.0,310.0 83.5,310.0 95.1,310.0 106.6,310.0 118.2,310.0 129.7,310.0 141.2,310.0 152.8,310.0 164.3,310.0 175.8,310.0 187.4,310.0 198.9,310.0 210.5,283.2 222.0,310.0 233.5,310.0 245.1,310.0 256.6,310.0 268.2,310.0 279.7,310.0 291.2,310.0 302.8,310.0 314.3,307.0 325.8,238.6 337.4,310.0 348.9,289.2 360.5,310.0 372.0,310.0 383.5,310.0 395.1,280.3 406.6,310.0 418.2,295.1 429.7,310.0 441.2,307.0 452.8,310.0 464.3,310.0 475.8,280.3 487.4,310.0 498.9,310.0 510.5,310.0 522.0,310.0 533.5,310.0 545.1,310.0 556.6,310.0 568.2,310.0 579.7,310.0 591.2,310.0 602.8,310.0 614.3,310.0 625.8,304.1 637.4,310.0 648.9,286.2 660.5,90.0 672.0,265.4 672,310"/>
-<polyline class="trend" points="72.0,310.0 83.5,310.0 95.1,310.0 106.6,310.0 118.2,310.0 129.7,310.0 141.2,310.0 152.8,310.0 164.3,310.0 175.8,310.0 187.4,310.0 198.9,310.0 210.5,283.2 222.0,310.0 233.5,310.0 245.1,310.0 256.6,310.0 268.2,310.0 279.7,310.0 291.2,310.0 302.8,310.0 314.3,307.0 325.8,238.6 337.4,310.0 348.9,289.2 360.5,310.0 372.0,310.0 383.5,310.0 395.1,280.3 406.6,310.0 418.2,295.1 429.7,310.0 441.2,307.0 452.8,310.0 464.3,310.0 475.8,280.3 487.4,310.0 498.9,310.0 510.5,310.0 522.0,310.0 533.5,310.0 545.1,310.0 556.6,310.0 568.2,310.0 579.7,310.0 591.2,310.0 602.8,310.0 614.3,310.0 625.8,304.1 637.4,310.0 648.9,286.2 660.5,90.0 672.0,265.4"/>
-<line class="axis" x1="72" y1="310" x2="672" y2="310"/>
-<text class="dim ax" x="118.2" y="328" text-anchor="middle">nov</text>
-<text class="dim ax" x="175.8" y="328" text-anchor="middle">dec</text>
-<text class="dim ax" x="222.0" y="328" text-anchor="middle">jan</text>
-<text class="dim ax" x="268.2" y="328" text-anchor="middle">feb</text>
-<text class="dim ax" x="314.3" y="328" text-anchor="middle">mar</text>
-<text class="dim ax" x="372.0" y="328" text-anchor="middle">apr</text>
-<text class="dim ax" x="418.2" y="328" text-anchor="middle">may</text>
-<text class="dim ax" x="475.8" y="328" text-anchor="middle">jun</text>
-<text class="dim ax" x="522.0" y="328" text-anchor="middle">jul</text>
-<text class="dim ax" x="568.2" y="328" text-anchor="middle">aug</text>
-<text class="dim ax" x="625.8" y="328" text-anchor="middle">sep</text>
-<text class="dim ax" x="672.0" y="328" text-anchor="middle">oct</text>
-<circle class="peak" cx="660.5" cy="90.0" r="3"/>
+<line class="axis" x1="88" y1="300.0" x2="92" y2="300.0"/>
+<text class="dim ax" x="84" y="303.5" text-anchor="end">0</text>
+<line class="grid" x1="92" y1="246.0" x2="668" y2="246.0"/>
+<line class="axis" x1="88" y1="246.0" x2="92" y2="246.0"/>
+<text class="dim ax" x="84" y="249.5" text-anchor="end">20</text>
+<line class="grid" x1="92" y1="192.0" x2="668" y2="192.0"/>
+<line class="axis" x1="88" y1="192.0" x2="92" y2="192.0"/>
+<text class="dim ax" x="84" y="195.5" text-anchor="end">40</text>
+<line class="grid" x1="92" y1="138.0" x2="668" y2="138.0"/>
+<line class="axis" x1="88" y1="138.0" x2="92" y2="138.0"/>
+<text class="dim ax" x="84" y="141.5" text-anchor="end">60</text>
+<line class="grid" x1="92" y1="84.0" x2="668" y2="84.0"/>
+<line class="axis" x1="88" y1="84.0" x2="92" y2="84.0"/>
+<text class="dim ax" x="84" y="87.5" text-anchor="end">80</text>
+<polygon class="area" points="92,300 92.0,300.0 103.1,300.0 114.2,300.0 125.2,300.0 136.3,300.0 147.4,300.0 158.5,300.0 169.5,300.0 180.6,300.0 191.7,300.0 202.8,300.0 213.8,300.0 224.9,275.7 236.0,300.0 247.1,300.0 258.2,300.0 269.2,300.0 280.3,300.0 291.4,300.0 302.5,300.0 313.5,300.0 324.6,297.3 335.7,235.2 346.8,300.0 357.8,281.1 368.9,300.0 380.0,300.0 391.1,300.0 402.2,273.0 413.2,300.0 424.3,286.5 435.4,300.0 446.5,297.3 457.5,300.0 468.6,300.0 479.7,273.0 490.8,300.0 501.8,300.0 512.9,300.0 524.0,300.0 535.1,300.0 546.2,300.0 557.2,300.0 568.3,300.0 579.4,300.0 590.5,300.0 601.5,300.0 612.6,300.0 623.7,294.6 634.8,300.0 645.8,278.4 656.9,100.2 668.0,254.1 668,300"/>
+<polyline class="trend" points="92.0,300.0 103.1,300.0 114.2,300.0 125.2,300.0 136.3,300.0 147.4,300.0 158.5,300.0 169.5,300.0 180.6,300.0 191.7,300.0 202.8,300.0 213.8,300.0 224.9,275.7 236.0,300.0 247.1,300.0 258.2,300.0 269.2,300.0 280.3,300.0 291.4,300.0 302.5,300.0 313.5,300.0 324.6,297.3 335.7,235.2 346.8,300.0 357.8,281.1 368.9,300.0 380.0,300.0 391.1,300.0 402.2,273.0 413.2,300.0 424.3,286.5 435.4,300.0 446.5,297.3 457.5,300.0 468.6,300.0 479.7,273.0 490.8,300.0 501.8,300.0 512.9,300.0 524.0,300.0 535.1,300.0 546.2,300.0 557.2,300.0 568.3,300.0 579.4,300.0 590.5,300.0 601.5,300.0 612.6,300.0 623.7,294.6 634.8,300.0 645.8,278.4 656.9,100.2 668.0,254.1"/>
+<line class="axis" x1="92" y1="78" x2="92" y2="300"/>
+<line class="axis" x1="92" y1="300" x2="674" y2="300"/>
+<text class="dim ax" transform="translate(48 192.0) rotate(-90)" text-anchor="middle">contributions / week</text>
+<line class="axis" x1="136.3" y1="300" x2="136.3" y2="304"/>
+<text class="dim ax" x="136.3" y="316" text-anchor="middle">nov</text>
+<line class="axis" x1="191.7" y1="300" x2="191.7" y2="304"/>
+<text class="dim ax" x="191.7" y="316" text-anchor="middle">dec</text>
+<line class="axis" x1="236.0" y1="300" x2="236.0" y2="304"/>
+<text class="dim ax" x="236.0" y="316" text-anchor="middle">jan</text>
+<line class="axis" x1="280.3" y1="300" x2="280.3" y2="304"/>
+<text class="dim ax" x="280.3" y="316" text-anchor="middle">feb</text>
+<line class="axis" x1="324.6" y1="300" x2="324.6" y2="304"/>
+<text class="dim ax" x="324.6" y="316" text-anchor="middle">mar</text>
+<line class="axis" x1="380.0" y1="300" x2="380.0" y2="304"/>
+<text class="dim ax" x="380.0" y="316" text-anchor="middle">apr</text>
+<line class="axis" x1="424.3" y1="300" x2="424.3" y2="304"/>
+<text class="dim ax" x="424.3" y="316" text-anchor="middle">may</text>
+<line class="axis" x1="479.7" y1="300" x2="479.7" y2="304"/>
+<text class="dim ax" x="479.7" y="316" text-anchor="middle">jun</text>
+<line class="axis" x1="524.0" y1="300" x2="524.0" y2="304"/>
+<text class="dim ax" x="524.0" y="316" text-anchor="middle">jul</text>
+<line class="axis" x1="568.3" y1="300" x2="568.3" y2="304"/>
+<text class="dim ax" x="568.3" y="316" text-anchor="middle">aug</text>
+<line class="axis" x1="623.7" y1="300" x2="623.7" y2="304"/>
+<text class="dim ax" x="623.7" y="316" text-anchor="middle">sep</text>
+<line class="axis" x1="668.0" y1="300" x2="668.0" y2="304"/>
+<text class="dim ax" x="668.0" y="316" text-anchor="middle">oct</text>
+<circle class="peak" cx="656.9" cy="100.2" r="3"/>
+<text class="ax" x="649.9" y="104.2" text-anchor="end">best week · 74</text>
 <text class="m" x="44" y="380">languages</text>
 <pattern id="l0" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(-60)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="409">jupyter notebook</text>
-<rect x="172" y="399" width="72.9" height="12" fill="url(#l0)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="252.9" y="409">49%</text>
+<rect x="172" y="399" width="72.8" height="12" fill="url(#l0)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="252.8" y="409">49%</text>
 <pattern id="l1" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="433">python</text>
-<rect x="172" y="423" width="33.8" height="12" fill="url(#l1)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="213.8" y="433">23%</text>
+<rect x="172" y="423" width="34.0" height="12" fill="url(#l1)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="214.0" y="433">23%</text>
 <pattern id="l2" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(0)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="457">c</text>
 <rect x="172" y="447" width="10.7" height="12" fill="url(#l2)" stroke="var(--ink)" stroke-width=".6"/>
 <text class="dim" x="190.7" y="457">7%</text>
 <pattern id="l3" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(30)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="481">makefile</text>
-<rect x="172" y="471" width="9.9" height="12" fill="url(#l3)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim" x="189.9" y="481">7%</text>
+<rect x="172" y="471" width="9.8" height="12" fill="url(#l3)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim" x="189.8" y="481">7%</text>
 <pattern id="l4" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(60)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text x="44" y="505">typescript</text>
 <rect x="172" y="495" width="8.6" height="12" fill="url(#l4)" stroke="var(--ink)" stroke-width=".6"/>
 <text class="dim" x="188.6" y="505">6%</text>
 <text class="m" x="380" y="380">facts</text>
-<text x="380" y="411"><tspan class="b">166</tspan><tspan class="dim" dx="8" style="font-size:11px">contributions this year</tspan></text>
+<text x="380" y="411"><tspan class="b">168</tspan><tspan class="dim" dx="8" style="font-size:11px">contributions this year</tspan></text>
 <text x="380" y="433"><tspan class="b">7d</tspan><tspan class="dim" dx="8" style="font-size:11px">longest streak · current 7d</tspan></text>
-<text x="380" y="455"><tspan class="b">27</tspan><tspan class="dim" dx="8" style="font-size:11px">busiest day · sep 30</tspan></text>
+<text x="380" y="455"><tspan class="b">27</tspan><tspan class="dim" dx="8" style="font-size:11px">on sep 30, my busiest day</tspan></text>
 <text x="380" y="477"><tspan class="b">wednesdays</tspan><tspan class="dim" dx="8" style="font-size:11px">favourite day to ship</tspan></text>
-<text x="380" y="499"><tspan class="b">149</tspan><tspan class="dim" dx="8" style="font-size:11px">commits · 5 prs · 0 issues</tspan></text>
-<text x="380" y="521"><tspan class="b">7</tspan><tspan class="dim" dx="8" style="font-size:11px">public repos · 0 stars</tspan></text>
+<text x="380" y="499"><tspan class="b">151</tspan><tspan class="dim" dx="8" style="font-size:11px">commits</tspan></text>
 </svg>
