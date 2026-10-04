@@ -17,17 +17,17 @@ query($login: String!) {
     followers { totalCount }
     contributionsCollection {
       totalCommitContributions totalPullRequestContributions totalIssueContributions
+      commitContributionsByRepository(maxRepositories: 100) { contributions { totalCount } repository { primaryLanguage { name } } }
       contributionCalendar { totalContributions weeks { contributionDays { date contributionCount weekday } } }
     }
     repositories(first: 100, ownerAffiliations: OWNER, isFork: false, privacy: PUBLIC) {
       totalCount
-      nodes { stargazerCount languages(first: 10, orderBy: {field: SIZE, direction: DESC}) { edges { size node { name } } } }
+      nodes { stargazerCount }
     }
   }
 }"""
 
 W, H = 720, 560
-WEEKDAYS = ["sundays", "mondays", "tuesdays", "wednesdays", "thursdays", "fridays", "saturdays"]
 
 
 def fetch(login, token):
@@ -108,13 +108,10 @@ def render(user):
     days = [d for w in weeks for d in w]
     longest, current = streaks(days)
     busiest = max(days, key=lambda d: d["contributionCount"])
-    by_weekday = Counter()
-    for d in days:
-        by_weekday[d["weekday"]] += d["contributionCount"]
     langs = Counter()
-    for r in user["repositories"]["nodes"]:
-        for e in r["languages"]["edges"]:
-            langs[e["node"]["name"]] += e["size"]
+    for r in cc["commitContributionsByRepository"]:
+        if r["repository"]["primaryLanguage"]:
+            langs[r["repository"]["primaryLanguage"]["name"]] += r["contributions"]["totalCount"]
     stars = sum(r["stargazerCount"] for r in user["repositories"]["nodes"])
     busy_date = dt.date.fromisoformat(busiest["date"]).strftime("%b %d").lower()
 
@@ -140,7 +137,7 @@ def render(user):
 
     # languages: hatched bars, a different pen angle per language
     total = sum(langs.values()) or 1
-    out.append('<text class="m" x="44" y="380">languages</text>')
+    out.append('<text class="m" x="44" y="380">top languages by commit</text>')
     for i, (name, size) in enumerate(langs.most_common(5)):
         y, frac = 398 + i * 24, size / total
         out.append(f'<pattern id="l{i}" width="3" height="3" patternUnits="userSpaceOnUse" '
@@ -158,7 +155,6 @@ def render(user):
         (f"{longest}d", "longest streak" + (f" · current {current}d" if current >= 3 else ""), longest >= 5),
         (str(busiest["contributionCount"]), f"on {busy_date}, my busiest day",
          busiest["contributionCount"] >= 10),
-        (WEEKDAYS[by_weekday.most_common(1)[0][0]] if days else "", "favourite day to ship", bool(days)),
         (f'{cc["totalCommitContributions"]:,}', "commits" + "".join(
             f" · {n} {k}" for n, k in ((prs, "prs"), (issues, "issues")) if n >= 10), True),
         (str(repos), "public repos" + (f" · {stars} stars" if stars >= 10 else ""), repos >= 10),
