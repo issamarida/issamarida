@@ -34,9 +34,8 @@ a 48-hour hackathon set up by claude community madrid and hosted by causa prima 
 
 **ai engineer intern @ optimiza** &nbsp;[optimus](https://github.com/issamarida/optimus)<br>
 built an ai tool that turns raw meeting transcripts into clear summaries and flags moments where a client is unhappy. it replaced a review process that was previously done by hand.
-
-**data scientist intern @ british airways** 
 <!-- &nbsp;[british-airways](https://github.com/issamarida/british-airways)<br> -->
+**data scientist intern @ british airways** 
 built an automated system that collected over 13,000 records of competitor fares and seat availability across six routes over two years. the analysis uncovered a 29% rise in winter delays and showed that demand fell as fares rose on every route, which directly shaped how the airline scheduled its capacity.
 
 **1st place @ EDP x IE datathon**<br>
