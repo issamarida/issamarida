@@ -8,7 +8,7 @@ i'm jordanian, but grew up for most of my life in dubai, and now i'm based in ma
 i'm very interested in full-stack ai engineering: ai workflows and agent harnesses.<br>
 i love working fast and efficiently, especially on problems that demand complex system design.
 
-i'm looking for work and very driven to ship things fast and effectively. contact me :3
+i'm looking for work, contact me!
 
 linkedin: <a href="https://www.linkedin.com/in/issam-arida/">linkedin.com/in/issam-arida</a><br>
 email: <a href="mailto:issamaarida@gmail.com">issamaarida@gmail.com</a><br>
