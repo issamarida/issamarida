@@ -49,9 +49,11 @@ conducted a comparative study for the united nations development programme on ho
 
 <br>
 
-<div align="center">
+<div align="left">
 
 ## github
+
+<div align="center">
 
 <img src="assets/stats.svg" width="720" alt="Weekly GitHub contributions over the last year, top languages and stats">
 
