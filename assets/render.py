@@ -1,4 +1,4 @@
-"""Raymarch a sitting cat SDF and plot it as rotating ASCII in an animated SVG.
+"""Raymarch a sitting orange-tabby SDF and plot it as rotating colour ASCII in an animated SVG.
 
     python3 assets/render.py > assets/cat.svg
 """
@@ -58,6 +58,49 @@ def cat(p):
     return d
 
 
+TAIL = np.stack([0.62 * np.sin(np.linspace(-0.4, 1.9, 9)), 0.06 + 0.04 * np.linspace(-0.4, 1.9, 9),
+                 -0.08 - 0.62 * np.cos(np.linspace(-0.4, 1.9, 9))], -1)
+# coat materials: orange, tabby stripe, cream, pink, eye green, pupil
+ORANGE, STRIPE, CREAM, PINK, EYE, PUPIL = range(6)
+
+
+def coat(p):
+    """Orange-tabby markings painted onto the surface in the cat's own frame."""
+    x, y, z = p[..., 0], p[..., 1], p[..., 2]
+    phi = np.arctan2(x, z)
+    # mackerel stripes ring the body, wobbling around it; rings march down the tail
+    m = np.where(np.sin(21 * y + 2.2 * np.sin(3 * phi) + 1.5 * np.cos(phi)) > 0.25, STRIPE, ORANGE)
+    head = y > 1.22
+    cheek = np.sin(34 * (y - 0.45 * np.abs(x))) > 0.35
+    brow = (np.sin(48 * x + np.pi / 2) > 0.3) & (y > 1.68) & (z > 0.05)
+    m = np.where(head, np.where((np.abs(x) > 0.24) & cheek | brow, STRIPE, ORANGE), m)
+    tr = np.hypot(x, z + 0.08)
+    tail = (y < 0.32) & (np.abs(tr - 0.62) < 0.13)
+    ang = np.arctan2(x, -(z + 0.08))
+    m = np.where(tail, np.where(np.sin(15 * ang) > 0.2, STRIPE, ORANGE), m)
+    # cream bib, paws, muzzle and tail tip
+    bib = (z > 0.3) & (y > 0.5) & (y < 1.22) & (np.abs(x) < 0.1 + 0.06 * (y - 0.5))
+    paws = (y < 0.16) & (z > 0.22) & (np.abs(x) < 0.3)
+    muzzle = (np.linalg.norm(p - V(0, 1.41, 0.5), axis=-1) < 0.19) & (y < 1.52)
+    tip = np.linalg.norm(p - TAIL[-1], axis=-1) < 0.17
+    m = np.where(bib | paws | muzzle | tip, CREAM, m)
+    # pink nose and inner ears
+    m = np.where(np.linalg.norm(p - V(0, 1.5, 0.6), axis=-1) < 0.06, PINK, m)
+    for s in (-1, 1):
+        a, b = V(0.2 * s, 1.75, 0.15), V(0.3 * s, 2.1, 0.1)
+        h = np.clip(((p - a) @ (b - a)) / ((b - a) @ (b - a)), 0, 1)
+        ax = a + (b - a) * h[..., None]
+        r = 0.13 + (0.015 - 0.13) * h
+        inner = (y > 1.84) & (h > 0.12) & (h < 0.85) & (z - ax[..., 2] > 0.02) & (np.abs(x - ax[..., 0]) < 0.62 * r)
+        m = np.where(inner, PINK, m)
+        # green eyes with a slit pupil, inside the carved sockets
+        e = V(0.15 * s, 1.6, 0.53)
+        eye = sphere(p, e, 0.06) > -0.02
+        eye &= np.linalg.norm(p - e, axis=-1) < 0.075
+        m = np.where(eye, np.where(np.abs(x - e[0]) < 0.016, PUPIL, EYE), m)
+    return m
+
+
 def normal(p, e=1e-3):
     n = np.stack([cat(p + V(*o)) - cat(p - V(*o)) for o in np.eye(3) * e], -1)
     return np.nan_to_num(n / np.maximum(np.linalg.norm(n, axis=-1, keepdims=True), 1e-9))
@@ -88,16 +131,28 @@ def frame(theta):
     rot_light = V(light[0] * c + light[2] * s, light[1], -light[0] * s + light[2] * c)  # light follows camera
     diff = np.clip(n @ rot_light, 0, 1)
     rim = (1 - np.abs(n @ fwd)) ** 3
-    ink = np.clip(1.0 - (0.15 + 0.85 * diff) + 0.35 * rim, 0, 1)
+    light_ = np.clip(0.15 + 0.85 * diff - 0.35 * rim, 0, 1)
+    # dense glyphs where lit so the coat reads as colour; shade picks the tint
+    ink = 0.3 + 0.7 * light_
     idx = np.where(hit, 1 + np.nan_to_num(ink * (len(RAMP) - 2)).round().astype(int), 0)
-    return ["".join(RAMP[i] for i in row) for row in idx]
+    mat = coat(p)
+    shade = np.digitize(light_, [0.22, 0.48])  # 0 shadow, 1 mid, 2 lit
+    cls = np.where(mat < PINK, mat * 3 + shade, 9 + mat - PINK)
+    return [[(RAMP[i], int(k)) for i, k in zip(r, c)] for r, c in zip(idx, cls)]
+
+
+# class -> (light theme, dark theme); orange/stripe/cream come shadow, mid, lit
+PALETTE = [("#a8460a", "#c4580f"), ("#e06a0c", "#f07a18"), ("#ff8c1a", "#ffa040"),
+           ("#4e1e05", "#86380c"), ("#6e2a06", "#a2480f"), ("#8c3a0a", "#b8561a"),
+           ("#c08a52", "#c9a57a"), ("#d6a26a", "#e8cba2"), ("#e8b880", "#fbe6c4"),
+           ("#e0567f", "#ff8fb4"), ("#3f9e1c", "#8ee04a"), ("#1b1b1b", "#0d0d0d")]
 
 
 def svg():
     W = int(COLS * CW) + 80
     H = int(ROWS * LH) + 110
     ox, oy = 40, 40
-    out = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}">',
+    out = [f'<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" viewBox="0 0 {W} {H}" width="{W}" height="{H}">',
            "<style>",
            ":root{--ink:#1b1b1b;--pen:#d9480f;--faint:#1b1b1b33}",
            "@media (prefers-color-scheme:dark){:root{--ink:#e8e6e1;--pen:#ff8a4c;--faint:#e8e6e133}}",
@@ -105,6 +160,8 @@ def svg():
            ".m{font-size:10px;letter-spacing:.12em;fill:var(--pen)}",
            ".l{stroke:var(--pen);stroke-width:.8;fill:none}",
            ".h{stroke:var(--faint);stroke-width:.6}",
+           "".join(f".c{i}{{fill:{a}}}" for i, (a, _) in enumerate(PALETTE)),
+           "@media (prefers-color-scheme:dark){" + "".join(f".c{i}{{fill:{b}}}" for i, (_, b) in enumerate(PALETTE)) + "}",
            f"g.f{{visibility:hidden;animation:k {SECONDS}s step-end infinite}}",
            f"@keyframes k{{0%{{visibility:visible}}{100 / FRAMES:.4f}%,100%{{visibility:hidden}}}}",
            "</style>"]
@@ -119,17 +176,26 @@ def svg():
             for x in np.arange(cx - rx - 30, cx + rx, 5)]
     out.append("</g>")
     out.append(f'<ellipse class="l" cx="{cx}" cy="{cy}" rx="{rx}" ry="{ry}" stroke-dasharray="1 3"/>')
-    out.append(f'<text class="m" x="{ox}" y="{H - oy + 4}">silly feline rotating</text>')
+    out.append(f'<text class="m" x="{ox}" y="{H - oy + 4}">orange tabby · rotating</text>')
     for i in range(FRAMES):
         theta = 2 * np.pi * i / FRAMES
         out.append(f'<g class="f" style="animation-delay:{SECONDS * i / FRAMES:.3f}s">')
-        for r, line in enumerate(frame(theta)):
-            body = line.rstrip()
-            lead = len(body) - len(body.lstrip())
-            if body.strip():
-                esc = body.strip().replace("&", "&amp;").replace("<", "&lt;")
-                out.append(f'<text x="{ox + lead * CW:.1f}" y="{oy + (r + 1) * LH:.1f}" '
-                           f'textLength="{len(esc) * CW:.1f}" lengthAdjust="spacingAndGlyphs">{esc}</text>')
+        for r, row in enumerate(frame(theta)):
+            cells = [i for i, (ch, _) in enumerate(row) if ch != " "]
+            if not cells:
+                continue
+            lead, end = cells[0], cells[-1] + 1
+            # one tspan per run of same-coloured glyphs; textLength pins the grid
+            runs, prev = [], None
+            for ch, k in row[lead:end]:
+                ch = ch.replace("&", "&amp;").replace("<", "&lt;")
+                if ch != " " and k != prev:
+                    runs.append([k, ""])
+                    prev = k
+                runs[-1][1] += ch
+            spans = "".join(f'<tspan class="c{k}">{s}</tspan>' for k, s in runs)
+            out.append(f'<text x="{ox + lead * CW:.1f}" y="{oy + (r + 1) * LH:.1f}" '
+                       f'textLength="{(end - lead) * CW:.1f}" lengthAdjust="spacingAndGlyphs">{spans}</text>')
         out.append(f'<text class="m" x="{W - ox}" y="{H - oy + 4}" text-anchor="end">θ = {round(np.degrees(theta)):03d}°</text>')
         out.append("</g>")
     out.append("</svg>")
