@@ -1,4 +1,4 @@
-<div align="center">
+<div align="left">
 
 # full-stack ai engineer
 
@@ -20,7 +20,7 @@ i'm looking for work and very driven to ship things fast and effectively. contac
 
 ## lately
 
-**co-founder @ [pharmable](https://pharmable.dev/)**<br>
+**founder @ [pharmable](https://pharmable.dev/)**<br>
 pharmable uses ai to check pharmaceutical documents against health regulations before they are submitted. it points out anything that is missing and shows which rule applies, so teams can fix problems early and spend far less time on review.
 
 **3rd place @ first claude hackathon in madrid** &nbsp;[linkedin post](https://lnkd.in/p/gpiuDC7s) | [repo](https://github.com/issamarida/claude-hackathon)<br>
