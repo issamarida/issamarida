@@ -24,7 +24,7 @@ i'm looking for work and very driven to ship things fast and effectively. contac
 pharmable uses ai to check pharmaceutical documents against health regulations before they are submitted. it points out anything that is missing and shows which rule applies, so teams can fix problems early and spend far less time on review.
 
 **3rd place @ first claude hackathon in madrid** &nbsp;[linkedin post](https://lnkd.in/p/gpiuDC7s) | [repo](https://github.com/issamarida/claude-hackathon)<br>
-a 48-hour hackathon set up by claude community madrid and hosted by causa prima and nova. eighteen teams built ai agents that competed against each other in a live trading game, where every deal had to be negotiated. together with my teammate ouadie, i built an agent that negotiated on its own and learned from rival teams as the game went on. it also ran its own marketplace where other teams traded, and we finished 3rd out of 18 teams.
+a 48-hour hackathon set up by claude community madrid and hosted by causa prima and nova. eighteen teams built ai agents that competed against each other in a live trading game, where every deal had to be negotiated. we built an agent that negotiated on its own and learned from rival teams as the game went on. it also ran its own marketplace where other teams traded, and we finished 3rd out of 18 teams.
 
 <div align="center">
 
@@ -62,4 +62,4 @@ conducted a comparative study for the united nations development programme on ho
 <br>
 
 **hobbies**<br>
-when i'm not building anything, i'm usually getting tackled. i've played eleven years of rugby at national and international level in the uae and jordan, and i'm still playing today in spain. i also compete in arm wrestling. i'm very comfortable in front of a camera, having done fashion modeling campaigns, and as an aspiring actor i'm currently directing my own horror short film. in my free time i love learning about pharmacy because chemistry intrigues me :3
+i've played eleven years of rugby at national and international level in the uae and jordan, and i'm still playing today in spain. i also compete in arm wrestling. i'm very comfortable in front of a camera, having done fashion modeling campaigns, and as an aspiring actor i'm currently directing my own horror short film. in my free time i love learning about pharmacy because chemistry intrigues me :3
