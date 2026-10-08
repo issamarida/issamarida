@@ -45,7 +45,7 @@ developed an approach to run battery energy storage systems (BESS) more efficien
 co-developed a bloomberg-sponsored esg trust score, a rating that helps investors judge how companies perform on sustainability, along with a simplified version of the bloomberg terminal designed for everyday investors. i worked directly with the bloomberg team throughout.
 
 **research @ IE econ data lab x UNDP**<br>
-conducted a comparative study for the united nations development programme on how cities in north america and south asia invest in resilience against disasters and other shocks, using economic data tracked over many years.
+conducted a comparative study for the united nations development programme on how cities in north america and south asia invest in resilience against disasters and other shocks, using longitudinal time series economic data.
 
 <br>
 
