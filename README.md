@@ -16,7 +16,6 @@ portfolio: <a href="https://www.issamarida.com/">issamarida.com</a>
 </div>
 
 <br>
-
 ## lately
 
 **founder @ [pharmable](https://pharmable.dev/)**<br>
