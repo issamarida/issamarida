@@ -13,7 +13,6 @@ i'm looking for work and very driven to ship things fast and effectively. contac
 linkedin: <a href="https://www.linkedin.com/in/issam-arida/">linkedin.com/in/issam-arida</a><br>
 email: <a href="mailto:issamaarida@gmail.com">issamaarida@gmail.com</a><br>
 portfolio: <a href="https://www.issamarida.com/">issamarida.com</a>
-
 </div>
 
 <br>
