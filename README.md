@@ -2,9 +2,9 @@
 
 # full-stack ai engineer
 
-<a href="https://www.linkedin.com/in/issam-arida/">linkedin</a> &nbsp;·&nbsp;
-<a href="mailto:issamaarida@gmail.com">issamaarida@gmail.com</a> &nbsp;·&nbsp;
-<a href="https://www.issamarida.com/">issamarida.com</a>
+linkedin: <a href="https://www.linkedin.com/in/issam-arida/">linkedin.com/in/issam-arida</a><br>
+email: <a href="mailto:issamaarida@gmail.com">issamaarida@gmail.com</a><br>
+portfolio: <a href="https://www.issamarida.com/">issamarida.com</a>
 
 i'm a computer science & artificial intelligence student at IE University,<br>
 very interested in full-stack ai engineering: ai workflows, orchestration and harnesses.<br>
@@ -15,46 +15,44 @@ now i'm based in madrid, studying at university.
 
 looking for work :3.
 
+</div>
+
 <br>
 
 ## lately
 
-**founder · <a href="https://pharmable.dev/">pharmable</a>**<br>
-automating pharmaceutical documentation and compliance.<br>
-upload a clinical study report, CAPA, deviation report or dossier section and pharmable<br>
-checks it against FDA, EMA and ICH texts, flags likely gaps by severity and cites the exact clause behind each one,<br>
-so quality teams catch issues before sign-off instead of after another review round,<br>
-with a hash-chained audit trail of what was checked and against which rules.
+**founder · [pharmable](https://pharmable.dev/)**<br>
+automating pharmaceutical documentation and compliance. upload a clinical study report, CAPA, deviation report or dossier section and pharmable checks it against FDA, EMA and ICH texts, flags likely gaps by severity and cites the exact clause behind each one. quality teams catch issues before sign-off instead of after another review round, with a hash-chained audit trail of what was checked and against which rules.
 
-**3rd place · <a href="https://lnkd.in/p/gpiuDC7s">first claude hackathon in madrid</a>**
+**3rd place · first claude hackathon in madrid**<br>
+a 48-hour build sprint run by claude community madrid and hosted by causa prima and nova, the first of its kind in the city. me and my teammate ouadie b. spent the 48 hours building ai agents with claude code, shipped a working project and took 3rd place overall.<br>
+[linkedin post](https://lnkd.in/p/gpiuDC7s) · [repo](https://github.com/issamarida/claude-hackathon)
+
+<div align="center">
 
 <img src="assets/cat.svg" width="460" alt="Orange tabby cat rendered as colour ASCII, spinning on a pen-plotter page">
 
+</div>
+
 ## previously
 
-**ai engineer intern · optimiza** &nbsp;—&nbsp; <a href="https://github.com/issamarida/optimus">optimus</a><br>
-built an end-to-end nlp pipeline to classify meeting dialogue acts, extract summaries<br>
-and detect negative client interactions from raw transcripts, replacing a manual review process.
+**ai engineer intern · optimiza** · [optimus](https://github.com/issamarida/optimus)<br>
+built an end-to-end nlp pipeline to classify meeting dialogue acts, extract summaries and detect negative client interactions from raw transcripts, replacing a manual review process.
 
-**data scientist intern · british airways**<br>
-built a python scraping pipeline collecting 13,000+ fare and seat-availability records<br>
-across 6 competitor routes over a 2-year window, with retry logic, rate limiting and schema validation on every record.<br>
-the analysis surfaced a 29% winter delay spike and negative fare elasticity on all routes,<br>
-directly informing capacity scheduling decisions.
+**data scientist intern · british airways** · [british-airways](https://github.com/issamarida/british-airways)<br>
+built a python scraping pipeline collecting 13,000+ fare and seat-availability records across 6 competitor routes over a 2-year window, with retry logic, rate limiting and schema validation on every record. the analysis surfaced a 29% winter delay spike and negative fare elasticity on all routes, directly informing capacity scheduling decisions.
 
 **research · IE tech lab × bloomberg**
 
 **research · IE econ data lab × UNDP**
 
-## off the keyboard
+<br>
 
-🏉 &nbsp;11 years of rugby, in national and international competitions<br>
-💪 &nbsp;competitive arm wrestling<br>
-📸 &nbsp;fashion modeling campaigns<br>
-🎬 &nbsp;directing my own horror short film, and acting<br>
-⚗️ &nbsp;learning about pharmacy for fun: chemistry intrigues me :3
+when i'm not building, i'm usually getting tackled: eleven years of rugby at national and international level, plus competitive arm wrestling on the side. i've worked in front of the camera on fashion modeling campaigns, and now i'm behind it too, directing and acting in my own horror short film. and in the quiet hours i read about pharmacy for fun, because chemistry genuinely intrigues me :3
 
 <br>
+
+<div align="center">
 
 ## github
 
