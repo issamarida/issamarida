@@ -6,7 +6,7 @@ i'm a computer science & artificial intelligence student at IE University.<br>
 i'm jordanian, but grew up for most of my life in dubai, and now i'm based in madrid.
 
 i'm very interested in full-stack ai engineering: ai workflows and orchestrations.<br>
-i love working fast and efficiently, especially on problems that demand complex system design.
+i love working fast and efficiently, especially on problems that demand complex system design. i love opportunities to manage projects and lead with my creativity!
 
 i'm looking for work, contact me!
 
