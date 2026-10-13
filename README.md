@@ -16,7 +16,7 @@ email: <a href="mailto:issamaarida@gmail.com">issamaarida@gmail.com</a><br>
 portfolio: <a href="https://www.issamarida.com/">issamarida.com</a>
 </div>
 <br>
-
+ 
 ## lately
 
 **founder @ [pharmable](https://pharmable.dev/)**<br>
