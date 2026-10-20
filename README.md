@@ -19,7 +19,7 @@ portfolio: <a href="https://www.issamarida.com/">issamarida.com</a>
  
 ## lately
 
-**full-stack engineer @ [naiss]([https://naiss.com/es])/)**<br>
+**full-stack engineer @ [naiss](https://naiss.com/es/)**<br>
 just started and really like the team so far!
 
 **founder @ [pharmable](https://pharmable.dev/)**<br>
