@@ -19,6 +19,9 @@ portfolio: <a href="https://www.issamarida.com/">issamarida.com</a>
  
 ## lately
 
+**full-stack engineer @ [naiss]([https://naiss.com/es])/)**<br>
+just started and really like the team so far!
+
 **founder @ [pharmable](https://pharmable.dev/)**<br>
 pharmable uses ai to check pharmaceutical documents against health regulations before they are submitted. it points out anything that is missing and shows which rule applies, so teams can fix problems early and spend far less time on review.
 
