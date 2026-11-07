@@ -27,34 +27,34 @@ text{font:12px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:var(--i
 <line class="grid" x1="92" y1="84.0" x2="668" y2="84.0"/>
 <line class="axis" x1="88" y1="84.0" x2="92" y2="84.0"/>
 <text class="dim ax" x="84" y="87.5" text-anchor="end">600</text>
-<path class="area" d="M92,300 L92.0,300.0 C128.2,297.0 164.5,291.8 200.7,291.0 C238.1,290.2 275.5,290.7 313.0,289.9 C350.4,289.2 387.8,285.7 425.3,281.3 C461.5,277.0 497.7,280.9 534.0,258.6 C571.4,235.6 608.8,145.8 646.3,113.9 C653.5,107.7 660.8,107.9 668.0,104.9 L668.0,300Z"/>
-<path class="trend" d="M92.0,300.0 C128.2,297.0 164.5,291.8 200.7,291.0 C238.1,290.2 275.5,290.7 313.0,289.9 C350.4,289.2 387.8,285.7 425.3,281.3 C461.5,277.0 497.7,280.9 534.0,258.6 C571.4,235.6 608.8,145.8 646.3,113.9 C653.5,107.7 660.8,107.9 668.0,104.9"/>
+<path class="area" d="M92,300 L92.0,300.0 C128.0,297.0 164.0,291.8 200.0,291.0 C237.2,290.2 274.4,290.7 311.6,289.9 C348.8,289.2 386.0,285.7 423.2,281.3 C459.2,277.0 495.2,280.9 531.2,258.6 C568.4,235.6 605.6,146.2 642.8,113.9 C651.2,106.6 659.6,106.4 668.0,102.7 L668.0,300Z"/>
+<path class="trend" d="M92.0,300.0 C128.0,297.0 164.0,291.8 200.0,291.0 C237.2,290.2 274.4,290.7 311.6,289.9 C348.8,289.2 386.0,285.7 423.2,281.3 C459.2,277.0 495.2,280.9 531.2,258.6 C568.4,235.6 605.6,146.2 642.8,113.9 C651.2,106.6 659.6,106.4 668.0,102.7"/>
 <line class="axis" x1="92" y1="78" x2="92" y2="300"/>
 <line class="axis" x1="92" y1="300" x2="674" y2="300"/>
 <text class="dim ax" transform="translate(48 192.0) rotate(-90)" text-anchor="middle">total contributions</text>
 <line class="axis" x1="92.0" y1="300" x2="92.0" y2="304"/>
 <text class="dim ax" x="92.0" y="316" text-anchor="middle">jun 1</text>
-<line class="axis" x1="200.7" y1="300" x2="200.7" y2="304"/>
-<text class="dim ax" x="200.7" y="316" text-anchor="middle">jul 1</text>
-<line class="axis" x1="313.0" y1="300" x2="313.0" y2="304"/>
-<text class="dim ax" x="313.0" y="316" text-anchor="middle">aug 1</text>
-<line class="axis" x1="425.3" y1="300" x2="425.3" y2="304"/>
-<text class="dim ax" x="425.3" y="316" text-anchor="middle">sep 1</text>
-<line class="axis" x1="534.0" y1="300" x2="534.0" y2="304"/>
-<text class="dim ax" x="534.0" y="316" text-anchor="middle">oct 1</text>
-<line class="axis" x1="646.3" y1="300" x2="646.3" y2="304"/>
-<text class="dim ax" x="646.3" y="316" text-anchor="middle">nov 1</text>
+<line class="axis" x1="200.0" y1="300" x2="200.0" y2="304"/>
+<text class="dim ax" x="200.0" y="316" text-anchor="middle">jul 1</text>
+<line class="axis" x1="311.6" y1="300" x2="311.6" y2="304"/>
+<text class="dim ax" x="311.6" y="316" text-anchor="middle">aug 1</text>
+<line class="axis" x1="423.2" y1="300" x2="423.2" y2="304"/>
+<text class="dim ax" x="423.2" y="316" text-anchor="middle">sep 1</text>
+<line class="axis" x1="531.2" y1="300" x2="531.2" y2="304"/>
+<text class="dim ax" x="531.2" y="316" text-anchor="middle">oct 1</text>
+<line class="axis" x1="642.8" y1="300" x2="642.8" y2="304"/>
+<text class="dim ax" x="642.8" y="316" text-anchor="middle">nov 1</text>
 <text class="m" x="44" y="380">top languages by commit</text>
 <pattern id="l0" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(-60)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text class="lg" x="44" y="408">python</text>
-<rect x="196" y="396" width="81.2" height="14" fill="url(#l0)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim lg" x="285.2" y="408">74%</text>
+<rect x="196" y="396" width="81.3" height="14" fill="url(#l0)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim lg" x="285.3" y="408">74%</text>
 <pattern id="l1" width="3" height="3" patternUnits="userSpaceOnUse" patternTransform="rotate(-30)"><line class="hl" x1="0" y1="0" x2="0" y2="3"/></pattern>
 <text class="lg" x="44" y="436">javascript</text>
-<rect x="196" y="424" width="28.8" height="14" fill="url(#l1)" stroke="var(--ink)" stroke-width=".6"/>
-<text class="dim lg" x="232.8" y="436">26%</text>
+<rect x="196" y="424" width="28.7" height="14" fill="url(#l1)" stroke="var(--ink)" stroke-width=".6"/>
+<text class="dim lg" x="232.7" y="436">26%</text>
 <text class="m" x="372" y="380">facts</text>
-<text x="372" y="412"><tspan class="b">542</tspan><tspan class="dim" dx="8" style="font-size:13px">contributions in the last 6 months</tspan></text>
-<text x="372" y="442"><tspan class="b">39d</tspan><tspan class="dim" dx="8" style="font-size:13px">longest streak</tspan></text>
-<text x="372" y="472"><tspan class="b">39d</tspan><tspan class="dim" dx="8" style="font-size:13px">current streak</tspan></text>
+<text x="372" y="412"><tspan class="b">548</tspan><tspan class="dim" dx="8" style="font-size:13px">contributions in the last 6 months</tspan></text>
+<text x="372" y="442"><tspan class="b">41d</tspan><tspan class="dim" dx="8" style="font-size:13px">longest streak</tspan></text>
+<text x="372" y="472"><tspan class="b">41d</tspan><tspan class="dim" dx="8" style="font-size:13px">current streak</tspan></text>
 </svg>
