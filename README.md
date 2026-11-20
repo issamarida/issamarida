@@ -25,10 +25,10 @@ linux and android optimizations, also frontend work
 **founder @ [pharmable](https://pharmable.dev/)**<br>
 pharmable uses ai to check pharmaceutical documents against health regulations before they are submitted. it points out anything that is missing and shows which rule applies, so teams can fix problems early and spend far less time on review.
 
-**cubee @ incube challenge 2026** &nbsp;[linkedin post](https://lnkd.in/p/eXidXh5U)<br>
+**cubee @ incube challenge 2026** [linkedin](https://lnkd.in/p/eXidXh5U)**<br>
 i took part in the incube challenge 2026, where i was locked in a cube at europaallee with 4 others to solve a mobility challenge for astara. we did 15 hackathons in 2 weeks, interviewed over 100 people, pitched to over 500 people at eth zentrum and got featured in swiss media.
 
-**3rd place @ claude hackathon** &nbsp;[linkedin post](https://lnkd.in/p/gpiuDC7s) | [repo](https://github.com/issamarida/claude-hackathon)<br>
+**3rd place @ claude hackathon** [linkedin](https://lnkd.in/p/gpiuDC7s)**<br> | [repo](https://github.com/issamarida/claude-hackathon)<br>
 a 48-hour hackathon set up by claude community madrid and hosted by causa prima and nova. eighteen teams built ai agents that competed against each other in a live trading market, where every deal had to be negotiated. we built an agent that negotiated on its own and learned from rival teams as the game went on. it also ran its own marketplace where other teams traded, and we finished 3rd out of 18 teams.
 
 <div align="center">
@@ -39,7 +39,7 @@ a 48-hour hackathon set up by claude community madrid and hosted by causa prima 
 
 ## previously
 
-**ai engineer intern @ optimiza** &nbsp;[optimus](https://github.com/issamarida/optimus)<br>
+**ai engineer intern @ optimiza** [optimus](https://github.com/issamarida/optimus)<br>
 built an ai tool that turns raw meeting transcripts into clear summaries and flags moments where a client is unhappy. it replaced a review process that was previously done by hand.
 <!-- &nbsp;[british-airways](https://github.com/issamarida/british-airways)<br> -->
 **data scientist intern @ british airways**<br>
